@@ -1,0 +1,23 @@
+//Recursion-2 > groupSum5
+public boolean groupSum5(int start, int[] nums, int target) {
+  if(target == 0 && start == nums.length) return true;
+  if(start >= nums.length) return false;
+  
+  if(nums[start] % 5 == 0 && start < nums.length-1){
+    if(nums[start+1] == 1){
+      if(groupSum5(start+2, nums, target - nums[start])) return true;
+    }
+    else {
+      if(groupSum5(start+1, nums, target - nums[start])) return true;
+    }
+  }
+  else if(nums[start] % 5 == 0){
+    if(groupSum5(start+1, nums, target - nums[start])) return true;
+  }
+  else {
+    if(groupSum5(start+1, nums, target - nums[start])) return true;
+    if(groupSum5(start+1, nums, target)) return true;
+  }
+  
+  return false;
+}

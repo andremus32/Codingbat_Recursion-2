@@ -1,0 +1,19 @@
+//Recursion-2 > splitOdd10
+public boolean splitOdd10(int[] nums) {
+  int start = 0;
+  int groupTen = 0;
+  int groupOdd = 0;
+  
+  if(nums.length == 0) return false;
+  else return helper(start, nums, groupTen, groupOdd);
+}
+
+public boolean helper(int start, int[] nums, int groupTen, int groupOdd){
+  if (groupTen % 10 == 0 && groupOdd % 2 != 0 && start >= nums.length) return true;
+  if (start >= nums.length) return false;
+  
+  if(helper(start+1, nums, groupTen + nums[start], groupOdd)) return true;
+  if(helper(start+1, nums, groupTen, groupOdd + nums[start])) return true;
+  
+  return false;
+}

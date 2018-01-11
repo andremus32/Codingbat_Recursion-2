@@ -1,0 +1,27 @@
+//Recursion-2 > split53
+public boolean split53(int[] nums) {
+  int start = 0;
+  int groupFive = 0;
+  int groupThree = 0;
+  
+  if(nums.length == 0) return false;
+  else return helper(start, nums, groupFive, groupThree);
+}
+
+public boolean helper(int start, int[] nums, int groupFive, int groupThree){
+  if(groupFive == groupThree && start >= nums.length) return true;
+  if(start >= nums.length) return false;
+  
+  if(nums[start] % 5 == 0){
+    if(helper(start+1, nums, groupFive + nums[start], groupThree)) return true;
+  }
+  else if(nums[start] % 3 == 0){
+    if(helper(start+1, nums, groupFive, groupThree + nums[start])) return true;
+  }
+  else{
+    if(helper(start+1, nums, groupFive + nums[start], groupThree)) return true;
+    if(helper(start+1, nums, groupFive, groupThree + nums[start])) return true;
+  }
+  
+  return false;
+}

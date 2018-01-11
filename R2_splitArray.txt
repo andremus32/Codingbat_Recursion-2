@@ -1,0 +1,21 @@
+//Recursion-2 > splitArray
+public boolean splitArray(int[] nums) {
+  int start = 0;
+  int leftGroup = 0;
+  int rightGroup = 0;
+  if(nums.length == 0) return true;
+  //else if(nums.length == 1) return false;
+  else {
+    return helper(start, nums, leftGroup, rightGroup);
+  }
+}
+
+public boolean helper(int start, int[] nums, int leftGroup, int rightGroup){
+  if(leftGroup == rightGroup && start >= nums.length) return true;
+  if(start >= nums.length) return false;
+
+  if(helper(start+1, nums, leftGroup + nums[start], rightGroup)) return true;
+  if(helper(start+1, nums, leftGroup, rightGroup + nums[start])) return true;
+  
+  return false;
+}
